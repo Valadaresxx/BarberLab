@@ -20,7 +20,9 @@ public class Client {
     private Long id;
 
     @Column(nullable = false)
-    private String name;
+    private String firstName;
+
+    private String lastName;
 
     @Column(unique = true)
     private String cpf;
@@ -30,7 +32,7 @@ public class Client {
 
     private String phone;
 
-    @Column(name = "created_at")
-    private LocalDateTime createdAt = LocalDateTime.now();
+    @Column(name = "created_at", nullable = false, updatable = false)
+    private LocalDateTime createdAt;
 
 }
