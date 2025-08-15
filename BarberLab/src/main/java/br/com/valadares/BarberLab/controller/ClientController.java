@@ -4,6 +4,8 @@ import br.com.valadares.BarberLab.dto.ClientDto;
 import br.com.valadares.BarberLab.model.Client;
 import br.com.valadares.BarberLab.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.RequestEntity;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,9 +19,10 @@ public class ClientController {
     private ClientRepository repository;
 
     @PostMapping
-    private void save(@RequestBody ClientDto dto) {
+    private ResponseEntity<Client> save(@RequestBody ClientDto dto) {
         var client = new Client(dto);
         repository.save(client);
+        return ResponseEntity.ok().body(client);
     }
 }
 
