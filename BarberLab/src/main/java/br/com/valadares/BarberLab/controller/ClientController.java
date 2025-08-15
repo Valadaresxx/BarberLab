@@ -4,7 +4,6 @@ import br.com.valadares.BarberLab.dto.ClientDto;
 import br.com.valadares.BarberLab.model.Client;
 import br.com.valadares.BarberLab.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

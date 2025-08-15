@@ -19,20 +19,14 @@ public class Client {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @Column(nullable = false)
     private String firstName;
-
     private String lastName;
-
     @Column(unique = true)
     private String cpf;
-
     @Column(nullable = false)
     private String email;
-
     private String phone;
-
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
 
