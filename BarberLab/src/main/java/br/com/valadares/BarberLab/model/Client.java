@@ -33,17 +33,22 @@ public class Client {
 
     private String phone;
 
-    @Column(name = "created_at", nullable = false, updatable = false)
+    @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
 
     public Client(ClientDto dto) {
-        this.id = id;
         this.firstName = dto.firstName();
         this.lastName = dto.lastName();
         this.cpf = dto.cpf();
         this.email = dto.email();
         this.phone = dto.phone();
-        this.createdAt = dto.createdAt();
     }
+
+    @PrePersist
+     public void prePersist() {
+        if(this.createdAt == null) {
+            this.createdAt = LocalDateTime.now();
+        }
+     }
 
 }
