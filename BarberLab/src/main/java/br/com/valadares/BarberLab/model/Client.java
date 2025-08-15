@@ -1,5 +1,6 @@
 package br.com.valadares.BarberLab.model;
 
+import br.com.valadares.BarberLab.dto.ClientDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -34,5 +35,15 @@ public class Client {
 
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
+
+    public Client(ClientDto dto) {
+        this.id = id;
+        this.firstName = dto.firstName();
+        this.lastName = dto.lastName();
+        this.cpf = dto.cpf();
+        this.email = dto.email();
+        this.phone = dto.phone();
+        this.createdAt = dto.createdAt();
+    }
 
 }
