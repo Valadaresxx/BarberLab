@@ -1,14 +1,13 @@
 package br.com.valadares.BarberLab.controller;
 
 import br.com.valadares.BarberLab.dto.ClientDto;
+import br.com.valadares.BarberLab.dto.ClientResponseDto;
 import br.com.valadares.BarberLab.model.Client;
 import br.com.valadares.BarberLab.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
 @RequestMapping("/client")
@@ -18,10 +17,19 @@ public class ClientController {
     private ClientRepository repository;
 
     @PostMapping
-    private ResponseEntity<Client> save(@RequestBody ClientDto dto) {
+    private ResponseEntity<ClientResponseDto> save(@RequestBody ClientDto dto) {
         var client = new Client(dto);
         repository.save(client);
-        return ResponseEntity.ok().body(client);
+
+        var uri = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(client.getId())
+                .toUri();
+
+        return ResponseEntity
+                .created(uri)
+                .body(new ClientResponseDto(client));
     }
 }
 
