@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
-@RequestMapping("/client")
+@RequestMapping("/clients")
 public class ClientController {
 
 
@@ -20,7 +20,7 @@ public class ClientController {
     }
 
     @PostMapping
-    private ResponseEntity<ClientResponseDto> create(@RequestBody ClientDto dto) {
+    public ResponseEntity<ClientResponseDto> create(@RequestBody ClientDto dto) {
         var client = service.create(dto);
 
         var uri = ServletUriComponentsBuilder
