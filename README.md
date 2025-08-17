@@ -38,10 +38,11 @@ git clone https://github.com/Valadaresxx/BarberLab.git
 src/
  ├─ main/
  │  ├─ java/com/barberlab/
+ │  │  ├─ controller/
+ │  │  ├─ dto/
  │  │  ├─ model/
  │  │  ├─ repository/
- │  │  ├─ service/
- │  │  └─ controller/
+ │  │  └─ service/
  │  └─ resources/
  │     └─ db/migration/
  └─ test/
