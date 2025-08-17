@@ -10,8 +10,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class ClientService {
 
-    @Autowired
-    private ClientRepository repository;
+    private final ClientRepository repository;
+
+    public ClientService(ClientRepository repository) {
+        this.repository = repository;
+    }
 
     public ClientResponseDto create(ClientDto dto) {
 
