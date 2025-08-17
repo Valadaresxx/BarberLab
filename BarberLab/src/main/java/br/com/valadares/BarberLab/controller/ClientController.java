@@ -3,7 +3,8 @@ package br.com.valadares.BarberLab.controller;
 import br.com.valadares.BarberLab.dto.ClientDto;
 import br.com.valadares.BarberLab.dto.ClientResponseDto;
 import br.com.valadares.BarberLab.service.ClientService;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -12,9 +13,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 @RequestMapping("/clients")
 public class ClientController {
 
-
     private final ClientService service;
-
     public ClientController(ClientService service) {
         this.service = service;
     }
@@ -32,6 +31,12 @@ public class ClientController {
         return ResponseEntity
                 .created(uri)
                 .body(client);
+    }
+
+    @GetMapping
+    public ResponseEntity<Page<ClientResponseDto>> list(Pageable page) {
+        var json = service.findAll(page);
+        return ResponseEntity.ok(json);
     }
 }
 
