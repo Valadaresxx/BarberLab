@@ -2,6 +2,7 @@ package br.com.valadares.BarberLab.controller;
 
 import br.com.valadares.BarberLab.dto.ClientDto;
 import br.com.valadares.BarberLab.dto.ClientResponseDto;
+import br.com.valadares.BarberLab.dto.ClientUpdateDto;
 import br.com.valadares.BarberLab.service.ClientService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -36,6 +37,12 @@ public class ClientController {
     @GetMapping
     public ResponseEntity<Page<ClientResponseDto>> list(Pageable page) {
         var json = service.findAll(page);
+        return ResponseEntity.ok(json);
+    }
+
+    @PutMapping
+    public ResponseEntity<ClientResponseDto> update(ClientUpdateDto dto) {
+        var json = service.update(dto);
         return ResponseEntity.ok(json);
     }
 }

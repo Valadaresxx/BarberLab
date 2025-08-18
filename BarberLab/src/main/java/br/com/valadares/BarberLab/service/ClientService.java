@@ -2,6 +2,7 @@ package br.com.valadares.BarberLab.service;
 
 import br.com.valadares.BarberLab.dto.ClientDto;
 import br.com.valadares.BarberLab.dto.ClientResponseDto;
+import br.com.valadares.BarberLab.dto.ClientUpdateDto;
 import br.com.valadares.BarberLab.model.Client;
 import br.com.valadares.BarberLab.repository.ClientRepository;
 import org.springframework.data.domain.Page;
@@ -25,5 +26,12 @@ public class ClientService {
 
     public Page<ClientResponseDto> findAll(Pageable pageable) {
         return repository.findAll(pageable).map(ClientResponseDto::new);
+    }
+
+    public ClientResponseDto update(ClientUpdateDto updateDto) {
+        var client = repository.getReferenceById(updateDto.id());
+        client.update(updateDto);
+
+        return new ClientResponseDto(client);
     }
 }
