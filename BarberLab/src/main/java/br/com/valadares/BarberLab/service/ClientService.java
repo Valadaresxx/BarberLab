@@ -28,8 +28,8 @@ public class ClientService {
         return repository.findAll(pageable).map(ClientResponseDto::new);
     }
 
-    public ClientResponseDto update(ClientUpdateDto updateDto) {
-        var client = repository.getReferenceById(updateDto.id());
+    public ClientResponseDto update(Long id, ClientUpdateDto updateDto) {
+        var client = repository.getReferenceById(id);
         client.update(updateDto);
 
         return new ClientResponseDto(client);

@@ -40,9 +40,9 @@ public class ClientController {
         return ResponseEntity.ok(json);
     }
 
-    @PutMapping
-    public ResponseEntity<ClientResponseDto> update(ClientUpdateDto dto) {
-        var json = service.update(dto);
+    @PutMapping("/{id}")
+    public ResponseEntity<ClientResponseDto> update(@PathVariable Long id, @RequestBody ClientUpdateDto dto) {
+        var json = service.update(id, dto);
         return ResponseEntity.ok(json);
     }
 }

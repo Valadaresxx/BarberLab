@@ -47,7 +47,6 @@ public class Client {
      }
 
     public void update(ClientUpdateDto updateDto) {
-        this.id = updateDto.id();
         this.firstName = updateDto.firstName();
         this.phone = updateDto.phone();
     }
