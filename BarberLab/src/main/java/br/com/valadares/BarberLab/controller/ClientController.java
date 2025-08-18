@@ -45,6 +45,8 @@ public class ClientController {
         var json = service.update(id, dto);
         return ResponseEntity.ok(json);
     }
+
+
 }
 
 

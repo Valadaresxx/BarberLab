@@ -7,6 +7,8 @@ import br.com.valadares.BarberLab.model.Client;
 import br.com.valadares.BarberLab.repository.ClientRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -24,7 +26,7 @@ public class ClientService {
         return new ClientResponseDto(client);
     }
 
-    public Page<ClientResponseDto> findAll(Pageable pageable) {
+    public Page<ClientResponseDto> findAll(@PageableDefault(size = 10, sort = "firstName", direction = Sort.Direction.ASC) Pageable pageable) {
         return repository.findAll(pageable).map(ClientResponseDto::new);
     }
 
