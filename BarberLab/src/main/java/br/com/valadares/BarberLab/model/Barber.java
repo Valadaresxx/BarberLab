@@ -1,5 +1,6 @@
 package br.com.valadares.BarberLab.model;
 
+import br.com.valadares.BarberLab.dto.BarberDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -38,4 +39,10 @@ public class Barber {
         }
     }
 
+    public Barber(BarberDto dto ) {
+        this.firstName = dto.firstName();
+        this.lastName = dto.lastName();
+        this.email = dto.email();
+        this.phone = dto.phone();
+    }
 }
