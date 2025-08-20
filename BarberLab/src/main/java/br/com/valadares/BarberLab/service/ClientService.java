@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -35,5 +36,11 @@ public class ClientService {
         client.update(updateDto);
 
         return new ClientResponseDto(client);
+    }
+
+    public ResponseEntity delete(Long id) {
+        var client = repository.getReferenceById(id);
+        repository.delete(client);
+        return ResponseEntity.noContent().build();
     }
 }
