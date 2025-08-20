@@ -10,6 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -45,8 +46,9 @@ public class ClientService {
     }
 
     @Transactional
-    public ResponseEntity delete(Long id) {
-        var client = repository.getReferenceById(id);
+    public ResponseEntity<Void> delete(Long id) {
+        var client = repository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente não encontrado!"));
         repository.delete(client);
         return ResponseEntity.noContent().build();
     }
