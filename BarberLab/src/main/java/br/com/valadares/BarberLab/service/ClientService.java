@@ -23,6 +23,7 @@ public class ClientService {
         this.repository = repository;
     }
 
+    @Transactional
     public ClientResponseDto create(ClientDto dto) {
         var client = new Client(dto);
         repository.save(client);
@@ -43,6 +44,7 @@ public class ClientService {
         return new ClientResponseDto(client);
     }
 
+    @Transactional
     public ResponseEntity delete(Long id) {
         var client = repository.getReferenceById(id);
         repository.delete(client);
