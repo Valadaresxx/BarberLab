@@ -47,7 +47,15 @@ public class Client {
      }
 
     public void update(ClientUpdateDto updateDto) {
-        this.firstName = updateDto.firstName();
-        this.phone = updateDto.phone();
+        if(updateDto.firstName() != null && !updateDto.firstName().isBlank()) {
+            this.firstName = updateDto.firstName();
+        }
+        if (updateDto.phone() != null) {
+            this.phone = updateDto.phone();
+        }
+        if (updateDto.email() != null && !updateDto.email().isBlank()) {
+            this.email = updateDto.email();
+        }
+
     }
 }
