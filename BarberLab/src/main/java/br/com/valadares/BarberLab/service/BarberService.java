@@ -17,10 +17,10 @@ public class BarberService {
     }
 
     @Transactional
-    public ResponseEntity create(BarberDto dto) {
+    public BarberResponseDto create(BarberDto dto) {
         var barber = new Barber(dto);
         repository.save(barber);
 
-        return ResponseEntity.ok(new BarberResponseDto(barber));
+        return new BarberResponseDto(barber);
     }
 }
