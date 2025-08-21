@@ -9,7 +9,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "barbers")
@@ -30,8 +32,9 @@ public class Barber {
     private String phone;
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
-    @ManyToMany
-    private List<Service> services;
+
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    private Set<Service> services = new HashSet<>();
 
     @PrePersist
     public void prePersist() {
