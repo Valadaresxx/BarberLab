@@ -1,4 +1,7 @@
 package br.com.valadares.BarberLab.repository;
 
-public interface ServiceRepository {
+import br.com.valadares.BarberLab.model.Service;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ServiceRepository extends JpaRepository<Service, Long> {
 }
