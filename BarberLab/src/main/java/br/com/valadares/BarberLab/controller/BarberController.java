@@ -44,4 +44,10 @@ public class BarberController {
         var json = service.update(id, updateDto);
         return ResponseEntity.ok(json);
     }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity delete(@PathVariable Long id) {
+        service.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 }
