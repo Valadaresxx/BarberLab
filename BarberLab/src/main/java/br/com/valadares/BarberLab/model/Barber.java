@@ -39,7 +39,7 @@ public class Barber {
         }
     }
 
-    public Barber(BarberDto dto ) {
+    public Barber(BarberDto dto) {
         this.firstName = dto.firstName();
         this.lastName = dto.lastName();
         this.email = dto.email();
