@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
-@RequestMapping("/barber")
+@RequestMapping("/barbers")
 public class BarberController {
 
     private final BarberService service;
