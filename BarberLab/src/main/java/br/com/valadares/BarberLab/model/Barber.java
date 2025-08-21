@@ -1,6 +1,7 @@
 package br.com.valadares.BarberLab.model;
 
 import br.com.valadares.BarberLab.dto.BarberDto;
+import br.com.valadares.BarberLab.dto.BarberUpdateDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -44,5 +45,17 @@ public class Barber {
         this.lastName = dto.lastName();
         this.email = dto.email();
         this.phone = dto.phone();
+    }
+
+    public void update(BarberUpdateDto updateDto) {
+        if(updateDto.firstName() != null && !updateDto.firstName().isBlank()) {
+            this.firstName = updateDto.firstName();
+        }
+        if (updateDto.phone() != null) {
+            this.phone = updateDto.phone();
+        }
+        if (updateDto.email() != null && !updateDto.email().isBlank()) {
+            this.email = updateDto.email();
+        }
     }
 }

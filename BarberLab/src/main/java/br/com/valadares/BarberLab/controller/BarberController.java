@@ -2,7 +2,9 @@ package br.com.valadares.BarberLab.controller;
 
 import br.com.valadares.BarberLab.dto.BarberDto;
 import br.com.valadares.BarberLab.dto.BarberResponseDto;
+import br.com.valadares.BarberLab.dto.BarberUpdateDto;
 import br.com.valadares.BarberLab.service.BarberService;
+import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +21,7 @@ public class BarberController {
     }
 
     @PostMapping
-    public ResponseEntity<BarberResponseDto> create(@RequestBody BarberDto dto) {
+    public ResponseEntity<BarberResponseDto> create(@Valid @RequestBody BarberDto dto) {
         var barber = service.create(dto);
 
         var URI = ServletUriComponentsBuilder
@@ -34,6 +36,12 @@ public class BarberController {
     @GetMapping
     public ResponseEntity<Page<BarberResponseDto>> list(Pageable pageable) {
         var json = service.findAll(pageable);
+        return ResponseEntity.ok(json);
+    }
+
+    @PutMapping("{id}")
+    public ResponseEntity<BarberResponseDto> update(@Valid @PathVariable Long id, @RequestBody BarberUpdateDto updateDto) {
+        var json = service.update(id, updateDto);
         return ResponseEntity.ok(json);
     }
 }
