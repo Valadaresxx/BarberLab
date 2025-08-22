@@ -10,7 +10,6 @@ import lombok.Setter;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -34,7 +33,7 @@ public class Barber {
     private LocalDateTime createdAt;
 
     @ManyToMany(cascade = CascadeType.PERSIST)
-    private Set<Service> services = new HashSet<>();
+    private Set<OfferedService> services = new HashSet<>();
 
     @PrePersist
     public void prePersist() {

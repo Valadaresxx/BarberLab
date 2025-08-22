@@ -2,7 +2,7 @@ package br.com.valadares.BarberLab.dto;
 
 import java.math.BigDecimal;
 
-public record ServiceDto(
+public record OfferedServiceDto(
         String name,
         String description,
         BigDecimal price,
